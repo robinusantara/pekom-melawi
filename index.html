@@ -112,6 +112,27 @@
             z-index: 1000;
             border: 1px solid #e0e0e0;
         }
+        /* Area Kredit (Pojok Kiri Bawah) */
+        .credits {
+            position: fixed;
+            bottom: 20px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 9px;
+            color: #555;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            pointer-events: auto;
+            border: 1px solid #ddd;
+        }
+
+        .credits a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -150,11 +171,14 @@
             title="Pekom Melawi">
         </iframe>
     </main>
-
+    <div class="credits">
+        Powered by &copy; https://studiopolygon.id/
+    </div>
     <div class="gps-status">🔵Lokasi GPS AKTIF</div>
 
 </body>
 </html>
+
 
 
 
