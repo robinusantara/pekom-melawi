@@ -241,6 +241,35 @@
 .menu-toggle.open .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .menu-toggle.open .bar:nth-child(2) { opacity: 0; }
 .menu-toggle.open .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* Sembunyikan logo mobile-menu secara default (Desktop) */
+.mobile-menu-logo {
+    display: none;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-menu-logo img {
+    height: 45px;
+    width: auto;
+}
+
+/* Penyesuaian saat di Mobile */
+@media (max-width: 767px) {
+    .mobile-menu-logo {
+        display: flex; /* Munculkan di dalam menu */
+    }
+
+    /* Efek halus: Sembunyikan logo utama di header saat menu aktif */
+    .header-bar.menu-open .header-left {
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.2s;
+    }
+}
     </style>
 </head>
 <body>
@@ -261,6 +290,14 @@
 </button>
 
 <nav class="nav-container" id="navMenu">
+    <div class="mobile-menu-logo">
+        <img src="https://raw.githubusercontent.com/robinusantara/aset-pekom/refs/heads/main/LOGO2.png" alt="Logo Melawi">
+        <div class="title-text">
+            <h1>P2 KANTAH MELAWI</h1>
+            <p>PETA ANALISIS PGT</p>
+        </div>
+    </div>
+    
     <a href="https://sites.google.com/view/pekommelawi/beranda?authuser=0" class="btn-nav">🏠 Beranda</a>
     <a href="https://sites.google.com/view/pekommelawi/gambar-lokasi" class="btn-nav">📄 Tutorial</a>
     <a href="https://sites.google.com/view/pekommelawi/cek-hgu-lbs?authuser=0" class="btn-nav">📑 HGU/LBS</a>
@@ -287,22 +324,25 @@
 <script>
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
+    const headerBar = document.querySelector('.header-bar'); // Ambil elemen header
 
     menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
         menuToggle.classList.toggle('open');
+        headerBar.classList.toggle('menu-open'); // Tambahkan class ini
     });
 
-    // Menutup menu saat link diklik (opsional)
     document.querySelectorAll('.btn-nav').forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             menuToggle.classList.remove('open');
+            headerBar.classList.remove('menu-open');
         });
     });
 </script>
 </body>
 </html>
+
 
 
 
