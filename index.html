@@ -3,93 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pekom Melawi - PETA  KOMPILASI p2 KANTAH MELAWI</title>
+    <title>Pekom Melawi - PETA KOMPILASI p2 KANTAH MELAWI</title>
     <style>
+        /* Menggunakan Font yang lebih bersih */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
             overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background-color: #fff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f8f9fa;
         }
 
-        /* Header Resmi */
+        /* Header Modern - Melayang & Efek Kaca */
         .header-bar {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 65px;
-            background-color: #ffffff;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             display: flex;
-            align-items: center;
-            justify-content: space-between; /* Membuat logo di kiri dan menu di kanan */
-            padding: 0 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex-direction: column;
+            padding: 12px 15px;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
             z-index: 1000;
             box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .header-bar {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                height: 75px;
+                top: 15px;
+                left: 20px;
+                right: 20px;
+                padding: 0 25px;
+            }
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .logo-img {
-            height: 40px;
+            height: 42px;
             width: auto;
-            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         .title-text h1 {
             margin: 0;
-            font-size: 14px;
+            font-size: 15px;
             color: #1a73e8;
             font-weight: 700;
-            text-transform: uppercase;
+            letter-spacing: -0.3px;
         }
 
         .title-text p {
             margin: 0;
-            font-size: 9px;
-            color: #666;
+            font-size: 10px;
+            color: #5f6368;
+            font-weight: 500;
         }
 
-        /* Tombol Beranda */
-        .nav-menu {
+        /* Navigasi Modern - Pill Style */
+        .nav-container {
             display: flex;
-            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0 2px 0;
+            scrollbar-width: none; 
+            -webkit-overflow-scrolling: touch;
         }
 
-        .btn-home {
+        .nav-container::-webkit-scrollbar { display: none; }
+
+        @media (min-width: 768px) {
+            .nav-container { padding: 0; }
+        }
+
+        .btn-nav {
             text-decoration: none;
-            background-color: #f1f3f4;
-            color: #3c4043;
-            padding: 8px 12px;
-            border-radius: 8px;
+            background-color: rgba(26, 115, 232, 0.06);
+            color: #1a73e8;
+            padding: 10px 18px;
+            border-radius: 14px;
             font-size: 12px;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 5px;
-            transition: background 0.2s;
-            border: 1px solid #dadce0;
+            gap: 6px;
+            border: 1px solid rgba(26, 115, 232, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .btn-home:hover {
-            background-color: #e8eaed;
+        .btn-nav:hover {
+            background-color: #1a73e8;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
         }
 
-        /* Container Iframe */
+        .btn-nav:active { transform: scale(0.96); }
+
+        /* Map Container Full Screen */
         .map-container {
             position: absolute;
-            top: 65px; 
-            bottom: 0;
+            top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
         iframe {
@@ -98,40 +134,54 @@
             border: none;
         }
 
-        .gps-status {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: bold;
-            color: #2e7d32;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            z-index: 1000;
-            border: 1px solid #e0e0e0;
-        }
-        /* Area Kredit (Pojok Kiri Bawah) */
-        .credits {
+        /* Floating Info Bottom */
+        .bottom-ui {
             position: fixed;
             bottom: 20px;
             left: 15px;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 9px;
-            color: #555;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            pointer-events: none;
             z-index: 1000;
-            pointer-events: auto;
-            border: 1px solid #ddd;
         }
 
-        .credits a {
+        .credits {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 8px 15px;
+            border-radius: 14px;
+            font-size: 10px;
+            color: #3c4043;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            pointer-events: auto;
+            line-height: 1.4;
+        }
+
+        .credits a { color: #1a73e8; text-decoration: none; font-weight: 700; }
+
+        .gps-status {
+            background: #ffffff;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
             color: #1a73e8;
-            text-decoration: none;
-            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(26, 115, 232, 0.2);
+            border: 1px solid rgba(26, 115, 232, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: auto;
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(26, 115, 232, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0); }
         }
     </style>
 </head>
@@ -142,25 +192,15 @@
             <img src="https://raw.githubusercontent.com/robinusantara/aset-pekom/refs/heads/main/LOGO2.png" alt="Logo Melawi" class="logo-img">
             <div class="title-text">
                 <h1>PEKOM MELAWI</h1>
-                <p>Peta Aspek</p>
+                <p>Peta Aspek Kompilasi</p>
             </div>
         </div>
 
-        <nav class="nav-menu">
-           <nav class="nav-container">
-            <a href="https://sites.google.com/view/pekommelawi/beranda?authuser=0" class="btn-nav">
-                🏠 Beranda
-            </a>
-            <a href="https://sites.google.com/view/pekommelawi/layanan-peta-analisis?authuser=0" class="btn-nav">
-                📊 Peta Analisis
-            </a>
-            <a href="https://sites.google.com/view/pekommelawi/cek-hgu-lbs?authuser=0" class="btn-nav">
-                📑 Cek HGU/LBS
-            </a>
-            <a href="https://sites.google.com/view/pekommelawi/bhumi?authuser=0" class="btn-nav">
-                🌍 Bhumi
-            </a>
-        </nav>
+        <nav class="nav-container">
+            <a href="https://sites.google.com/view/pekommelawi/beranda?authuser=0" class="btn-nav">🏠 Beranda</a>
+            <a href="https://sites.google.com/view/pekommelawi/layanan-peta-analisis?authuser=0" class="btn-nav">📊 Analisis</a>
+            <a href="https://sites.google.com/view/pekommelawi/cek-hgu-lbs?authuser=0" class="btn-nav">📑 HGU/LBS</a>
+            <a href="https://sites.google.com/view/pekommelawi/bhumi?authuser=0" class="btn-nav">🌍 Bhumi</a>
         </nav>
     </header>
 
@@ -171,13 +211,22 @@
             title="Pekom Melawi">
         </iframe>
     </main>
-    <div class="credits">
-        Powered by &copy; https://studiopolygon.id/
+
+    <div class="bottom-ui">
+        <div class="credits">
+            Powered by <a href="https://studiopolygon.id/" target="_blank">Studio Polygon</a>
+            <br>&copy; 2026 Kantah Melawi
+        </div>
+
+        <div class="gps-status">
+            <span style="width: 8px; height: 8px; background: #1a73e8; border-radius: 50%;"></span>
+            GPS AKTIF
+        </div>
     </div>
-    <div class="gps-status">🔵Lokasi GPS AKTIF</div>
 
 </body>
 </html>
+
 
 
 
