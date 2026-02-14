@@ -7,4 +7,3 @@ Aplikasi berbasis web untuk pemetaan digitasi polygon di wilayah Kabupaten Melaw
 - Akses Geolocation (GPS)
 - Tampilan Responsif Mobile
 
-**URL Akses:** [https://username-anda.github.io/pekom-melawi/](https://username-anda.github.io/pekom-melawi/)
