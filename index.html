@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pekom Melawi - Sistem Digitasi Lokasi</title>
+    <style>
+        /* Reset Dasar */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Header Resmi */
+        .header-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Placeholder Logo - Ganti URL gambar jika sudah ada logo resmi */
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .title-text {
+            line-height: 1.2;
+        }
+
+        .title-text h1 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .title-text p {
+            margin: 0;
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Container Iframe */
+        .map-container {
+            position: absolute;
+            top: 60px; /* Sesuai tinggi header */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Indikator GPS Aktif */
+        .gps-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-bar">
+        <div class="header-content">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Logo_Kabupaten_Melawi.png" alt="Logo Melawi" class="logo-img">
+            <div class="title-text">
+                <h1>PEKOM MELAWI</h1>
+                <p>Sistem Pemetaan Digitasi Lokasi Terpadu</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="map-container">
+        <iframe 
+            src="https://digitasi.polygon-oss.id/" 
+            allow="geolocation; camera; microphone"
+            title="Digitasi Polygon Melawi">
+        </iframe>
+    </main>
+
+    <div class="gps-status">📍 Geolocation Aktif</div>
+
+</body>
+</html>
