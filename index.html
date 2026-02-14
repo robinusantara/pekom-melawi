@@ -183,6 +183,64 @@
             70% { box-shadow: 0 0 0 12px rgba(26, 115, 232, 0); }
             100% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0); }
         }
+        /* Gaya Tombol Hamburger */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #1a73e8;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* Responsive Mobile */
+@media (max-width: 767px) {
+    .menu-toggle { display: flex; }
+
+    .nav-container {
+        display: none; /* Sembunyikan default di mobile */
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.05);
+        gap: 12px;
+    }
+
+    /* Kelas aktif saat diklik */
+    .nav-container.active {
+        display: flex;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    .btn-nav { width: 100%; justify-content: flex-start; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animasi Hamburger ke 'X' */
+.menu-toggle.open .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-toggle.open .bar:nth-child(2) { opacity: 0; }
+.menu-toggle.open .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     </style>
 </head>
 <body>
@@ -226,9 +284,26 @@
         </div>
 
     </div>
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
 
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuToggle.classList.toggle('open');
+    });
+
+    // Menutup menu saat link diklik (opsional)
+    document.querySelectorAll('.btn-nav').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('open');
+        });
+    });
+</script>
 </body>
 </html>
+
 
 
 
