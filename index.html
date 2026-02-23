@@ -5,6 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pekom P2 Kantah Melawi</title>
     <style>
+        /* Latar belakang gelap transparan */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px); /* Efek buram pada peta */
+    display: none; /* Sembunyi saat awal */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Pastikan di atas header & peta */
+}
+
+/* Kotak Putih Pop-up */
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    animation: popIn 0.3s ease-out; /* Animasi muncul */
+}
+
+/* Animasi Muncul */
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h2 { font-size: 18px; color: #1a73e8; margin: 10px 0; }
+.modal-content p { font-size: 13px; color: #5f6368; line-height: 1.6; }
+
+/* Tombol Tutup */
+.btn-close {
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
         body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; font-family: 'Inter', sans-serif; }
@@ -90,7 +134,14 @@
     </style>
 </head>
 <body>
-
+<div class="modal-overlay" id="welcomeModal">
+    <div class="modal-content">
+        <span style="font-size: 40px;">📍</span>
+        <h2>Selamat Datang</h2>
+        <p>Pekom Melawi: Peta Kompilasi P2 Kantah Melawi untuk Analisis PGT yang lebih cepat dan akurat.</p>
+        <button class="btn-close" onclick="closeModal()">Mulai Analisis</button>
+    </div>
+</div>
     <header class="header-bar">
         <div class="header-left">
             <img src="https://raw.githubusercontent.com/robinusantara/aset-pekom/refs/heads/main/LOGO2.png" alt="Logo Melawi" class="logo-img">
@@ -115,7 +166,17 @@
             allow="geolocation *; camera *; microphone *">
         </iframe>
     </main>
+<script>
+    // Munculkan pop-up otomatis saat web dibuka
+    window.onload = function() {
+        document.getElementById('welcomeModal').style.display = 'flex';
+    };
 
+    // Fungsi untuk menutup pop-up
+    function closeModal() {
+        document.getElementById('welcomeModal').style.display = 'none';
+    }
+</script>
     <div class="bottom-ui">
         <div class="credits">
             &copy; 2026 Kantah Melawi
@@ -124,6 +185,7 @@
 
 </body>
 </html>
+
 
 
 
