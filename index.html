@@ -5,209 +5,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pekoms P2 Kantah Melawi</title>
     <style>
-        /* Latar belakang gelap transparan */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px); /* Efek buram pada peta */
-    display: none; /* Sembunyi saat awal */
-    justify-content: center;
-    align-items: center;
-    z-index: 2000; /* Pastikan di atas header & peta */
-}
-
-/* Kotak Putih Pop-up */
-.modal-content {
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-    width: 80%;
-    max-width: 320px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-    animation: popIn 0.3s ease-out; /* Animasi muncul */
-}
-
-/* Animasi Muncul */
-@keyframes popIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.modal-content h2 { font-size: 18px; color: #1a73e8; margin: 10px 0; }
-.modal-content p { font-size: 13px; color: #5f6368; line-height: 1.6; }
-
-/* Tombol Tutup */
-.btn-close {
-    margin-top: 20px;
-    padding: 10px 25px;
-    background: #1a73e8;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-}
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
         body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; font-family: 'Inter', sans-serif; }
 
+        /* --- MODAL STYLES --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: popIn 0.3s ease-out;
+        }
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .btn-close {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* --- HEADER STYLES --- */
         .header-bar {
             position: fixed;
             top: 0; left: 0; right: 0;
             background: #ffffff;
             display: flex;
-            align-items: center; /* Sejajar vertikal */
-            justify-content: space-between; /* Logo kiri, Nav kanan */
-            padding: 4px 12px; 
-            height: 60px; /* Sedikit penyesuaian untuk logo */
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            height: 60px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            z-index: 1000;
+            z-index: 2000;
             box-sizing: border-box;
         }
 
-        /* --- KODE LOGO & TEKS --- */
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .header-left { display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 35px; width: auto; }
+        .title-text h1 { margin: 0; font-size: 14px; color: #1a73e8; font-weight: 700; }
+        .title-text p { margin: 0; font-size: 10px; color: #5f6368; font-weight: 500; }
 
-        .logo-img {
-            height: 28px; /* Ukuran pas untuk header ramping */
-            width: auto;
-        }
-
-        .title-text h1 {
-            margin: 0;
-            font-size: 11px;
+        /* --- NAVIGATION (DESKTOP) --- */
+        .nav-container { display: flex; gap: 10px; }
+        .btn-nav {
+            text-decoration: none;
             color: #1a73e8;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .title-text p {
-            margin: 0;
-            font-size: 8px;
-            color: #5f6368;
-            font-weight: 500;
-            line-height: 1.2;
-        }
-
-        /* --- NAVIGASI --- */
-        .nav-container { 
-            display: flex; 
-            gap: 5px; 
-        }
-
-        /* Pengaturan dasar untuk desktop */
-.btn-nav {
-    display: inline-block;
-    text-decoration: none;
-    color: #1a73e8;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-size: 30px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 600;
             background: rgba(26, 115, 232, 0.05);
-            white-space: nowrap;
+            transition: 0.3s;
         }
-/* Pengaturan khusus ponsel (layar di bawah 768px) */
-@media (max-width: 768px) {
-    .btn-nav {
-        font-size: 8px;     /* Ukuran font yang lebih nyaman di ponsel */
-        padding: 12px 24px;  /* Padding lebih luas agar mudah diklik jari */
-        display: block;      /* Opsional: membuat button selebar layar */
-        text-align: center;
-    }
-}
-@media (max-width: 480px) {
-    .btn-nav {
-        width: 100%;
-        box-sizing: border-box; /* Memastikan padding tidak merusak lebar 100% */
-    }
-}
-        
-        /* Responsif Mobile: Sembunyikan teks judul jika layar sangat kecil agar tidak tabrakan */
-        @media (max-width: 480px) {
-            .title-text { display: none; }
+        .btn-nav:hover { background: rgba(26, 115, 232, 0.15); }
+
+        /* --- BURGER MENU ICON --- */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .burger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #1a73e8;
+            border-radius: 3px;
+            transition: 0.3s;
         }
 
-        /* POSISI MAP */
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .burger-menu { display: flex; }
+            
+            .nav-container {
+                position: fixed;
+                top: 60px;
+                right: -100%; /* Sembunyi di kanan */
+                width: 200px;
+                height: auto;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: -2px 5px 10px rgba(0,0,0,0.1);
+                transition: 0.4s ease-in-out;
+                border-bottom-left-radius: 15px;
+                gap: 15px;
+            }
+
+            .nav-container.active { right: 0; } /* Muncul saat aktif */
+
+            .btn-nav {
+                font-size: 14px;
+                padding: 12px;
+                display: block;
+                text-align: left;
+            }
+        }
+
+        /* MAP & OTHERS */
         .map-container { 
             position: absolute; 
-            top: 40px; /* Sesuai tinggi header */
+            top: 60px; 
             left: 0; 
             width: 100%; 
-            height: calc(100% - 40px); 
+            height: calc(100% - 60px); 
             z-index: 1; 
         }
-
         iframe { width: 100%; height: 100%; border: none; }
-        
         .bottom-ui { position: fixed; bottom: 10px; right: 10px; z-index: 1000; }
-        .credits { background: white; padding: 2px 8px; border-radius: 4px; font-size: 8px; opacity: 0.8; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-    /* Mengecilkan widget tawk menjadi 50% dari ukuran aslinya */
-#tawk-chat-container {
-    transform: scale(0.5) !important;
-    transform-origin: bottom right !important; /* Agar tetap menempel di pojok kanan bawah */
-}
+        .credits { background: white; padding: 2px 8px; border-radius: 4px; font-size: 8px; opacity: 0.8; }
     </style>
 </head>
 <body>
+
 <div class="modal-overlay" id="welcomeModal">
     <div class="modal-content">
         <span style="font-size: 40px;">📍</span>
         <h2>Tips :</h2>
-        <p>Saat diminta login atau akan mendownload poligon gunakan <br>Username: kantahmelawi@gmail.com <br> password : melawi6110</p>
+        <p>Saat diminta login atau akan mendownload poligon gunakan <br><b>Username:</b> kantahmelawi@gmail.com <br> <b>Password:</b> melawi6110</p>
         <button class="btn-close" onclick="closeModal()">Mulai Analisis</button>
     </div>
 </div>
-    <header class="header-bar">
-        <div class="header-left">
-            <img src="https://raw.githubusercontent.com/robinusantara/aset-pekom/refs/heads/main/logo_pekoms.png" alt="Logo Melawi" class="logo-img">
-            <div class="title-text">
-                <h1>P2 KANTAH MELAWI</h1>
-                <p>PETA ANALISIS PGT</p>
-            </div>
+
+<header class="header-bar">
+    <div class="header-left">
+        <img src="https://raw.githubusercontent.com/robinusantara/aset-pekom/refs/heads/main/logo_pekoms.png" alt="Logo Melawi" class="logo-img">
+        <div class="title-text">
+            <h1>P2 KANTAH MELAWI</h1>
+            <p>PETA ANALISIS PGT</p>
         </div>
+    </div>
 
-        <nav class="nav-container">
-            <a href="https://sites.google.com/view/pekommelawi/beranda?authuser=0" class="btn-nav">🏠 Beranda</a>
-            <a href="https://sites.google.com/view/pekommelawi/gambar-lokasi" class="btn-nav">📄 Panduan</a>
-            <a href="https://sites.google.com/view/pekommelawi/cek-hgu-lbs?authuser=0" class="btn-nav">🗺️ HGU/LBS</a>
-            <a href="https://bhumi.atrbpn.go.id/peta" target="_blank" class="btn-nav">🌍 BHUMI</a>
-        </nav>
-    </header>
+    <div class="burger-menu" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-    <main class="map-container">
-        <iframe 
-            src="https://digitasi.polygon-oss.id/" 
-            title="Pekom Melawi"
-            allow="geolocation *; camera *; microphone *">
-        </iframe>
-    </main>
+    <nav class="nav-container" id="navMenu">
+        <a href="https://sites.google.com/view/pekommelawi/beranda?authuser=0" class="btn-nav">🏠 Beranda</a>
+        <a href="https://sites.google.com/view/pekommelawi/gambar-lokasi" class="btn-nav">📄 Panduan</a>
+        <a href="https://sites.google.com/view/pekommelawi/cek-hgu-lbs?authuser=0" class="btn-nav">🗺️ HGU/LBS</a>
+        <a href="https://bhumi.atrbpn.go.id/peta" target="_blank" class="btn-nav">🌍 BHUMI</a>
+    </nav>
+</header>
+
+<main class="map-container">
+    <iframe src="https://digitasi.polygon-oss.id/" title="Pekom Melawi" allow="geolocation *; camera *; microphone *"></iframe>
+</main>
+
+<div class="bottom-ui">
+    <div class="credits">&copy; 2026 Kantah Melawi</div>
+</div>
+
 <script>
-    // Munculkan pop-up otomatis saat web dibuka
+    // Fungsi Pop-up
     window.onload = function() {
         document.getElementById('welcomeModal').style.display = 'flex';
     };
 
-    // Fungsi untuk menutup pop-up
     function closeModal() {
         document.getElementById('welcomeModal').style.display = 'none';
     }
+
+    // Fungsi Burger Menu
+    function toggleMenu() {
+        const nav = document.getElementById('navMenu');
+        nav.classList.toggle('active');
+    }
+
+    // Menutup menu jika user mengklik salah satu link (untuk ponsel)
+    document.querySelectorAll('.btn-nav').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navMenu').classList.remove('active');
+        });
+    });
 </script>
-    <div class="bottom-ui">
-        <div class="credits">
-            &copy; 2026 Kantah Melawi
-        </div>
-    </div>
-    <br>
-    <br>
-<!--Start of Tawk.to Script-->
+
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -219,16 +216,6 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
+
 </body>
-    
 </html>
-
-
-
-
-
-
-
-
-
